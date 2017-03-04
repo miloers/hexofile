@@ -3,9 +3,9 @@ title: Vue的初体验
 date: 2017-03-01 20:19:15
 tags: Vue 
 ---
+![alt text](http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg)
 这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。
 我对Vue理解的也不是很深，也是在摸索中了解阶段。
-![alt text](http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg)
 <!--more--><!--more-->
 ####  阵前
 
