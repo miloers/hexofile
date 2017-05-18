@@ -8,6 +8,12 @@ date: 2016-11-10 15:49:21
 
 > 生活相关 ，技术有染 。
 
+#### 17.05
+
+[JavaScript模块化编程简史（2009-2016）](https://yuguo.us/weblog/javascript-module-development-history/)
+
+[JavaScript 模块化七日谈](https://huangxuan.me/2015/07/09/js-module-7day/)
+
 
 #### 17.01
 
