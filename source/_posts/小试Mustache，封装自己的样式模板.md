@@ -3,7 +3,9 @@ title: 小试Mustache，封装自己的样式模板
 date: 2017-05-18 17:42:07
 tags: js
 ---
-![](http://upload-images.jianshu.io/upload_images/3459828-fe024299e76685da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+![](http://upload-images.jianshu.io/upload_images/626151-1dfbca9a11951b3f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 (图片与本文无关)
 
 <!--more--><!--more-->
@@ -15,12 +17,11 @@ tags: js
 就像一栋楼，而我造的就是一栋“危楼“。
 也不想过多谈什么大道理，价值观不一样，想法也许就有歧义，我姥爷曾跟我说“这世上除了知识和身体之外都不是真正属于自己的。“我深以为然。 
 
-
 #### 开始
 
 为什么会有模板的存在，让公共样式有更强复用性，也让代码更加的可读。
 
-这是个是个Header的模板，有三个变量，左边的图标，中间展示的名字，还有右边的图标，在Mustache里，模板接受对象后，通过{{}}的方式来进行获取定义的值，
+这是个是个Header的模板，有三个变量，左边的图标，中间展示的名字，还有右边的图标，在Mustache里，模板接受对象后，通过双括号的方式来进行获取定义的值，
 ```
 
 <div class="qyui-header jy_theme">
@@ -58,7 +59,7 @@ tags: js
 
 #### 看看循环
 
-在Mustache里页面里加了{{#variable}}---{{/variable}} （variable是你自定义的对象数据）,判断Mustache通过判断参数长度来进行渲染，当然循环里还可以在套一个循环，就像下面的{{#other}}{{/other}}里的
+在Mustache里页面里加了data（data是你自定义的对象数据）,判断Mustache通过判断参数长度来进行渲染，当然循环里还可以在套一个循环，就像下面的other里的
 
 ```
  {{#data}}
