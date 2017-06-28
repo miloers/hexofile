@@ -36,4 +36,7 @@ jQuery 版本支持模块的导出，很方便弄，但是加密的2个JS连npm�
 
 昨天我看帖子有一句话，webpack更适合做单页页面应用，多页应用更适合用glup来做，是这样吗？
 
+##### 最后放一张webpack的整体流程图
+![alt text](https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg)
+
 
