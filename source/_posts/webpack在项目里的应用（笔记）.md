@@ -39,4 +39,27 @@ jQuery 版本支持模块的导出，很方便弄，但是加密的2个JS连npm�
 ##### 最后放一张webpack的整体流程图
 ![alt text](https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg)
 
+#####  6.29
+打包完文件是局部的，html代码在使用时 会报$ undefined
 
+```
+test.html
+<script src="./dist/js/test.js"></script>
+<script>
+    $(function() {
+        $("#fdas").text("22");
+    })
+</script>
+```
+
+test文件里import jQuery，在test.html 在使用jQuery时，就报错了。
+
+######  6.29 下午
+
+理解的有一些偏差，[手动滑稽]。
+感觉webpack比自己想象的强大的多。
+
+我模糊的以为引用第三方的JS 给需要export这种模块，其实并不需要，昨天提到需要引入2个JS插件，今天require()引入进来就万事大吉了。
+这样好像就用不了代码分割的功能了，我其实一直把这个放在心头来着。其实想想像这种第三的库，又不会经常改动，何必要跟逻辑代码混在一起呢？
+
+今天查了查资料，对这种常引用的第三方库，用CommonsChunkPlugin打包公共代码，打包的JS文件，然后在把这个静态资源做缓存 ，它有一个minChunks属性，我觉得很有趣，这个是判断公共代码的判断标准，某个js模块被多少个chunk加载了才算是公共代码。
