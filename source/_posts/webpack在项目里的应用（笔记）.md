@@ -63,3 +63,48 @@ test文件里import jQuery，在test.html 在使用jQuery时，就报错了。
 这样好像就用不了代码分割的功能了，我其实一直把这个放在心头来着。其实想想像这种第三的库，又不会经常改动，何必要跟逻辑代码混在一起呢？
 
 今天查了查资料，对这种常引用的第三方库，用CommonsChunkPlugin打包公共代码，打包的JS文件，然后在把这个静态资源做缓存 ，它有一个minChunks属性，我觉得很有趣，这个是判断公共代码的判断标准，某个js模块被多少个chunk加载了才算是公共代码。
+
+
+##### 6.30  
+六月的最后一天，刚刚好也是星期五。
+
+以前用vue 脚手架，写过一个应用查询的小程序，着实体验了一把单页应用的丝滑柔顺[笑哭]。 记得在页面都是动态引入CSS资源来着，不过那个是单页应用，整体页面引入一个，生成webpack 把JS CSS 一些文件混在一起。
+
+在多页面应用,我尝试把第三方的css文件，JS库和业务逻辑代码分开打包。
+
+common.js // 三方 这些不动的
+
+[name].js //每个页面固定的入口文件
+
+还有一些单个页面定制的css文件，现在想的是把这个也混放在业务逻辑代码包里。
+
+不知道这样合不合理？还有把这个打包除了对缓存，以及减少http请求有优势以外还有其他的优势吗？
+
+##### 使用extract-text-webpack-plugin
+
+目前的状态是，html代码里 有一些文件，并不是配合webpack动态载入的模板文件。打包后的CSS样式就这样加载到了页面的头部，但是当用户启动页面时，已经加载html文件了，也就是说，第一眼看到的html文件没有样式的。
+
+使用extract-text-webpack-plugin插件可以独立打包css文件
+
+安装
+npm install extract-text-webpack-plugin --save-dev 
+
+配置
+```
+  rules: [{
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: "css-loader"
+            })
+    }]
+ plugins: [
+        new ExtractTextPlugin({ filename: 'css/[name].css', allChunks: true })
+    ]
+```
+allChunks 的作用是可以把加载的多个CSS文件合并为一个css文件。
+
+##### 阶段想法
+就目前而言，感觉就像是把法拉利的材料拼接成了一个金杯。
+从页面访问角度来讲，初见成效，代码维护也相对更好维护。
+但是里面使用的plugins，loaders，并没有做到深层次的挖掘，这是下一阶段需要做的学习内容。
