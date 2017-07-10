@@ -133,3 +133,33 @@ import img from '../../img/icon_to.png';
 相比传统页面，我测试了目前的页面状态，使用webpack动态引入图片，相比载入的时候更耗时间。
 
 老实说，看的越多，越感觉一团乱遭，刚刚尝试使用了require.ensure()拆分代码，按需去加载模块，流程明白为什么去这么做，但是这个demo效果没有到达期望的效果，页面载入时间比以前更长了。
+
+##### 压缩JS CSS代码
+
+用ExtractTextPlugin把所有的文件打包为一个CSS文件，然后压缩.但是每次压缩后页面有些样式就挂了[滑稽].目前还没找到原因。
+```
+ //压缩css配置
+ {
+     test: /\.css$/,
+     use: ExtractTextPlugin.extract({
+         fallback: "style-loader",
+         use: [{
+             loader: 'css-loader',
+             options: {
+                 minimize: true }
+             }
+         }]
+     })
+ }
+```
+
+压缩JS代码，webpack 已经内嵌了uglifyJS无需额外引用插件，但是好像对es6代码压缩不了。
+```
+new webpack.optimize.UglifyJsPlugin({ 
+		compress: {
+		 warnings: false
+		},
+		except: ['$', 'jQuery', 'require', 'exports', 'import']
+})
+```
+except :排除关键字
