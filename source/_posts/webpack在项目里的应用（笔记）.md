@@ -163,3 +163,25 @@ new webpack.optimize.UglifyJsPlugin({
 })
 ```
 except :排除关键字
+
+
+还有一种压缩的方法，效率蛮高的。我这个250k 转换完 节省了90多k。
+使用 <strong>babili-webpack-plugin</strong>
+
+在配置里使用非常简单
+```
+const BabiliPlugin = require('babili-webpack-plugin');
+
+  plugins: [
+        new ExtractTextPlugin({ filename: 'css/[name].css', allChunks: true }),
+        new purify({
+            basePath: __dirname,
+            paths: [
+                "webMoudle/*.html",
+                "webMoudle/*.jsp",
+            ]
+        }),
+        new BabiliPlugin()
+ ]
+```
+
